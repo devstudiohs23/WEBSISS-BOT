@@ -3,184 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBSISS - Sistema Oficial</title>
-    <!-- FUENTE PIXELADA -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>WEBSISS - Suite Oficial</title>
+    
+    <!-- FUENTES TECNOLÓGICAS Y DE PIXEL -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Press Start 2P', monospace;
         }
 
         body {
-            background-color: #0A0C0F;
-            background-image: radial-gradient(circle at center, #161A22 0%, #050608 100%);
-            color: #FFFFFF;
+            background-color: #06080B;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(0, 180, 216, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            color: #E2E8F0;
+            font-family: 'Orbitron', sans-serif;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* CONTENEDOR TIPO INTERFAZ DE CELULAR / APP */
-        .app-card {
-            background: rgba(16, 18, 22, 0.90);
-            border: 1.5px solid rgba(255, 255, 255, 0.35);
-            border-radius: 16px;
-            max-width: 480px;
+        .container {
+            max-width: 1100px;
             width: 100%;
-            padding: 30px 24px;
-            box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.05);
-            text-align: center;
-            position: relative;
         }
 
-        /* RESPLANDOR DEL LOGO */
-        .logo-glow {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px auto;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
+        /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
+        nav {
+            background: rgba(16, 22, 31, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 13px;
+            color: #FFF;
+        }
+
+        .nav-logo img {
+            height: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            font-size: 11px;
+        }
+
+        .nav-links a {
+            color: #A0AEC0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #FFF;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 2. ENCABEZADO Y HERO */
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .hero-logo {
+            width: 110px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+        }
+
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 26px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #94A3B8;
+            margin-bottom: 10px;
+            word-spacing: 4px;
+        }
+
+        .hero-desc {
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        /* 3. TARJETAS DE DESCARGA (APP MÓVIL vs PROGRAMA PC) */
+        .download-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 850px) {
+            .download-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.03), 0 10px 30px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+            font-size: 18px;
         }
 
-        .logo-glow img {
-            width: 80px;
-            height: auto;
+        .card-title-box h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 13px;
+            color: #FFF;
         }
 
-        h1 {
-            font-size: 16px;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            color: #FFFFFF;
+        .card-title-box p {
+            font-size: 10px;
+            color: #64748B;
+            margin-top: 4px;
         }
 
-        p.subtitle {
-            font-size: 9px;
-            color: #8A8D93;
-            line-height: 1.6;
+        .card-body {
+            display: flex;
+            gap: 20px;
+            align-items: center;
             margin-bottom: 25px;
         }
 
-        /* SECCIONES ESTILO TARJETA DE CONFIGURACIÓN */
-        .section-box {
-            background: rgba(0, 0, 0, 0.45);
-            border: 1.2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 15px;
-            text-align: left;
+        .card-preview {
+            width: 120px;
+            height: 140px;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #000;
         }
 
-        .section-title {
-            font-size: 10px;
-            color: #FFFFFF;
-            margin-bottom: 10px;
+        .card-features {
+            list-style: none;
+            font-size: 11px;
+            color: #CBD5E1;
+        }
+
+        .card-features li {
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .section-desc {
-            font-size: 8px;
-            color: #A0A4AB;
-            line-height: 1.5;
+        .card-features li::before {
+            content: "✓";
+            color: #38BDF8;
+            font-weight: bold;
         }
 
-        /* BOTÓN METÁLICO (IGUAL AL DE LA APP) */
-        .btn-main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        /* BOTONES METÁLICOS CON GLOW */
+        .btn-download {
             width: 100%;
-            height: 52px;
-            background: linear-gradient(180deg, #5A5D64 0%, #1E2026 100%);
-            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            padding: 14px;
+            background: linear-gradient(180deg, #334155 0%, #0F172A 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
             border-radius: 12px;
-            color: #FFFFFF;
+            color: #FFF;
+            font-family: 'Press Start 2P', cursive;
             font-size: 10px;
+            text-align: center;
             text-decoration: none;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            transition: all 0.2s ease;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .btn-main:hover {
-            border-color: #FFFFFF;
+        .btn-download:hover {
+            border-color: #38BDF8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
             transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* INDICADORES DE ESTADO */
-        .status-bar {
+        /* 4. CARACTERÍSTICAS PRINCIPALES (GRID DE 4) */
+        .section-header {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            color: #FFF;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .feature-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #38BDF8;
+        }
+
+        .feature-box h4 {
+            font-size: 11px;
+            color: #F8FAFC;
+        }
+
+        /* 5. BARRA DE ESTADÍSTICAS Y FOOTER */
+        .stats-bar {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 15px;
             display: flex;
             justify-content: space-around;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 8px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .dot {
-            height: 8px;
-            width: 8px;
-            background-color: #00E676;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #00E676;
+        .stat-item h5 {
+            font-size: 14px;
+            color: #FFF;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            font-size: 9px;
+            color: #64748B;
+            margin-top: 3px;
         }
 
         footer {
-            margin-top: 25px;
-            font-size: 7px;
-            color: #555861;
+            text-align: center;
+            font-size: 10px;
+            color: #475569;
+            padding-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="app-card">
-        <!-- LOGO Y TÍTULO -->
-        <div class="logo-glow">
-            <img src="logo.png" alt="Logo Websiss" onerror="this.src='https://via.placeholder.com/80/000000/FFFFFF?text=W'">
-        </div>
+    <div class="container">
         
-        <h1>WEBSISS SUITE</h1>
-        <p class="subtitle">SISTEMA DE CONTROL REMOTO Y GESTIÓN DE MATERIAS</p>
+        <!-- NAVEGACIÓN -->
+        <nav>
+            <div class="nav-logo">
+                <img src="logo.png" alt="Logo" onerror="this.style.display='none'">
+                WEBSISS
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#descargas">Descargas</a></li>
+                <li><a href="#caracteristicas">Información</a></li>
+                <li><a href="#">Soporte</a></li>
+            </ul>
+        </nav>
 
-        <!-- BLOQUE DE INFORMACIÓN DE LA APP -->
-        <div class="section-box">
-            <div class="section-title">⚡ 01 MONITOREO EN VIVO</div>
-            <div class="section-desc">Consola en tiempo real y recepción de capturas directas desde la PC a tu celular.</div>
-        </div>
+        <!-- HERO -->
+        <section class="hero">
+            <img src="logo.png" alt="WEBSISS Logo" class="hero-logo" onerror="this.src='https://via.placeholder.com/100/000?text=W'">
+            <h1 class="hero-title">WEBSISS SUITE</h1>
+            <p class="hero-subtitle">INNOVACIÓN • TECNOLOGÍA • SIN LÍMITES</p>
+            <p class="hero-desc">Descarga nuestras herramientas y lleva la experiencia automatizada contigo.</p>
+        </section>
 
-        <div class="section-box">
-            <div class="section-title">🔐 02 DATOS GUARDADOS</div>
-            <div class="section-desc">Sincronización de credenciales SIS y materias mediante Firebase Cloud.</div>
-        </div>
+        <!-- TARJETAS DE DESCARGA -->
+        <section class="download-grid" id="descargas">
+            
+            <!-- TARJETA APP MÓVIL -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon">📱</div>
+                        <div class="card-title-box">
+                            <h3>APP MÓVIL</h3>
+                            <p>Bot de Inscripciones UMSS</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <img src="login.png" class="card-preview" alt="App Preview" onerror="this.src='https://via.placeholder.com/120x140/000/FFF?text=APP'">
+                        <ul class="card-features">
+                            <li>Configuración remota</li>
+                            <li>Interfaz moderna</li>
+                            <li>Notificaciones en vivo</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
+                    ⬇ DESCARGAR APP<br><span style="font-size:8px; color:#94A3B8;">APK • Android</span>
+                </a>
+            </div>
 
-        <!-- BOTÓN DE DESCARGA O ACCESO -->
-        <a href="https://github.com/devstudiohs23/BOT-WEBSISS" class="btn-main">
-            🚀 IR AL REPOSITORIO DE GITHUB
-        </a>
+            <!-- TARJETA PROGRAMA PC -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon">💻</div>
+                        <div class="card-title-box">
+                            <h3>PROGRAMA DE PC</h3>
+                            <p>Bot de Inscripciones UMSS</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <img src="panel.png" class="card-preview" alt="PC Preview" onerror="this.src='https://via.placeholder.com/120x140/000/FFF?text=PC'">
+                        <ul class="card-features">
+                            <li>Alta estabilidad</li>
+                            <li>Interfaz avanzada</li>
+                            <li>Funciones exclusivas</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
+                    ⬇ DESCARGAR PROGRAMA<br><span style="font-size:8px; color:#94A3B8;">EXE • Windows</span>
+                </a>
+            </div>
 
-        <!-- INDICADORES -->
-        <div class="status-bar">
-            <span><span class="dot"></span> SISTEMA ACTIVO</span>
-            <span style="color: #8A8D93;">v1.0.0 (BETA)</span>
-        </div>
+        </section>
 
-        <footer>DEVSTUDIO HS • 2026</footer>
+        <!-- CARACTERÍSTICAS PRINCIPALES -->
+        <h2 class="section-header" id="caracteristicas">CARACTERÍSTICAS PRINCIPALES</h2>
+        <section class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">⚡</div>
+                <h4>Rendimiento Optimizado</h4>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🛡️</div>
+                <h4>Seguridad Garantizada</h4>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔄</div>
+                <h4>Actualizaciones Constantes</h4>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🎧</div>
+                <h4>Soporte Especializado</h4>
+            </div>
+        </section>
+
+        <!-- BARRA DE ESTADÍSTICAS -->
+        <section class="stats-bar">
+            <div class="stat-item">
+                <h5>+100%</h5>
+                <p>Estabilidad</p>
+            </div>
+            <div class="stat-item">
+                <h5>SSL / TLS</h5>
+                <p>Cifrado Seguro</p>
+            </div>
+            <div class="stat-item">
+                <h5>5.0 ★</h5>
+                <p>Calificación</p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            WEBSISS © 2026. Todos los derechos reservados. — Desarrollado por DevStudio HS
+        </footer>
+
     </div>
 
 </body>
