@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEBSISS - Bot Oficial</title>
     
-    <!-- FUENTES TECNOLÓGICAS Y DE PIXEL -->
+    <!-- FUENTES PIXEL Y TECNOLÓGICAS -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
@@ -18,7 +18,7 @@
         body {
             background-color: #06080B;
             background-image: 
-                radial-gradient(circle at 50% 20%, rgba(0, 180, 216, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
             color: #E2E8F0;
             font-family: 'Orbitron', sans-serif;
@@ -34,52 +34,53 @@
             width: 100%;
         }
 
-        /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
+        /* 1. NAVEGACIÓN (INICIO Y SOPORTE WHATSAPP) */
         nav {
             background: rgba(16, 22, 31, 0.75);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            padding: 12px 25px;
+            padding: 12px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-family: 'Press Start 2P', cursive;
             font-size: 13px;
-            color: #FFF;
+            color: #FFFFFF;
         }
 
         .nav-logo img {
             height: 24px;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             list-style: none;
             font-size: 11px;
         }
 
         .nav-links a {
-            color: #A0AEC0;
+            color: #94A3B8;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: #FFF;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
         }
 
-        /* 2. ENCABEZADO Y HERO */
+        /* 2. HERO */
         .hero {
             text-align: center;
             margin-bottom: 45px;
@@ -89,41 +90,41 @@
             width: 110px;
             height: auto;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
         }
 
         .hero-title {
             font-family: 'Press Start 2P', cursive;
-            font-size: 26px;
+            font-size: 24px;
             letter-spacing: 2px;
             margin-bottom: 15px;
             color: #FFFFFF;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
         .hero-subtitle {
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 3px;
             color: #94A3B8;
             margin-bottom: 10px;
-            word-spacing: 4px;
         }
 
         .hero-desc {
-            font-size: 12px;
+            font-size: 11px;
             color: #64748B;
         }
 
-        /* 3. TARJETAS DE DESCARGA (APP MÓVIL vs PROGRAMA PC) */
+        /* 3. CONTENEDOR DE TARJETAS DINÁMICAS */
         .download-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
             margin-bottom: 40px;
+            transition: all 0.5s ease;
         }
 
-        @media (max-width: 850px) {
-            .download-grid { grid-template-columns: 1fr; }
+        .download-grid.single-mode {
+            grid-template-columns: 1fr;
         }
 
         .card {
@@ -131,171 +132,213 @@
             backdrop-filter: blur(10px);
             border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 18px;
-            padding: 25px;
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.03), 0 10px 30px rgba(0,0,0,0.7);
+            padding: 30px;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.03), 0 10px 30px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card.hidden {
+            display: none !important;
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .card-icon {
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .card-title-box h3 {
             font-family: 'Press Start 2P', cursive;
             font-size: 13px;
-            color: #FFF;
+            color: #FFFFFF;
+            letter-spacing: 1px;
         }
 
         .card-title-box p {
             font-size: 10px;
-            color: #64748B;
+            color: #94A3B8;
             margin-top: 4px;
-        }
-
-        .card-body {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .card-preview {
-            width: 120px;
-            height: 140px;
-            object-fit: contain;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: #000;
         }
 
         .card-features {
             list-style: none;
             font-size: 11px;
             color: #CBD5E1;
+            margin-bottom: 25px;
         }
 
         .card-features li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            line-height: 1.4;
         }
 
         .card-features li::before {
-            content: "✓";
-            color: #38BDF8;
-            font-weight: bold;
+            content: "✦";
+            color: #FFFFFF;
+            font-size: 12px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
 
-        /* BOTONES METÁLICOS CON GLOW */
-        .btn-download {
+        /* DETALLES EXPANDIDOS (GALERÍA DE CAPTURAS + DESCRIPCIÓN) */
+        .expanded-details {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .expanded-details p {
+            font-size: 12px;
+            color: #CBD5E1;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .screenshot-gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .screenshot-gallery img {
+            max-width: 210px;
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(180deg, #334155 0%, #0F172A 100%);
-            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            height: auto;
             border-radius: 12px;
-            color: #FFF;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            transition: transform 0.3s;
+        }
+
+        .screenshot-gallery img:hover {
+            transform: scale(1.03);
+            border-color: #FFFFFF;
+        }
+
+        /* BOTONES DE ACCIÓN (VER MÁS / DESCARGAR / VOLVER) */
+        .btn-more, .btn-download, .btn-back {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(180deg, #334155 0%, #0F172A 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            color: #FFFFFF;
             font-family: 'Press Start 2P', cursive;
             font-size: 10px;
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
 
-        .btn-download:hover {
-            border-color: #38BDF8;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        .btn-more:hover, .btn-download:hover {
+            border-color: #FFFFFF;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
+            background: linear-gradient(180deg, #475569 0%, #1E293B 100%);
         }
 
-        /* 4. CARACTERÍSTICAS PRINCIPALES (GRID DE 4) */
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #94A3B8;
+            margin-top: 15px;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #FFF;
+            border-color: #FFF;
+        }
+
+        /* 4. CARACTERÍSTICAS GENERALES */
         .section-header {
             text-align: center;
             font-family: 'Press Start 2P', cursive;
             font-size: 12px;
-            color: #FFF;
-            margin-bottom: 20px;
+            color: #FFFFFF;
+            margin-bottom: 25px;
             letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         @media (max-width: 768px) {
             .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .download-grid { grid-template-columns: 1fr; }
         }
 
         .feature-box {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 12px;
-            padding: 18px;
+            padding: 20px 15px;
             text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .feature-box:hover {
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .feature-icon {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #38BDF8;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
         }
 
         .feature-box h4 {
-            font-size: 11px;
-            color: #F8FAFC;
-        }
-
-        /* 5. BARRA DE ESTADÍSTICAS Y FOOTER */
-        .stats-bar {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 15px;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .stat-item h5 {
-            font-size: 14px;
-            color: #FFF;
-            font-weight: 800;
-        }
-
-        .stat-item p {
-            font-size: 9px;
-            color: #64748B;
-            margin-top: 3px;
+            font-size: 10px;
+            color: #E2E8F0;
+            line-height: 1.4;
         }
 
         footer {
             text-align: center;
-            font-size: 10px;
+            font-size: 9px;
             color: #475569;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
         }
     </style>
 </head>
@@ -310,70 +353,98 @@
                 WEBSISS
             </div>
             <ul class="nav-links">
-                <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#descargas">Descargas</a></li>
-                <li><a href="#caracteristicas">Información</a></li>
-                <li><a href="#">Soporte</a></li>
+                <li><a href="#" class="active" onclick="resetCards()">Inicio</a></li>
+                <li><a href="https://wa.me/59177836344" target="_blank">Soporte</a></li>
             </ul>
         </nav>
 
         <!-- HERO -->
         <section class="hero">
             <img src="logo.png" alt="WEBSISS Logo" class="hero-logo" onerror="this.src='https://via.placeholder.com/100/000?text=W'">
-            <h1 class="hero-title">WEBSISS SUITE</h1>
+            <h1 class="hero-title">WEBSISS BOT</h1>
             <p class="hero-subtitle">INNOVACIÓN • TECNOLOGÍA • SIN LÍMITES</p>
-            <p class="hero-desc">Descarga nuestras herramientas y lleva la experiencia automatizada contigo.</p>
+            <p class="hero-desc">Automatiza tu proceso de inscripción en la UMSS desde cualquier lugar.</p>
         </section>
 
         <!-- TARJETAS DE DESCARGA -->
-        <section class="download-grid" id="descargas">
+        <section class="download-grid" id="downloadGrid">
             
             <!-- TARJETA APP MÓVIL -->
-            <div class="card">
+            <div class="card" id="cardApp">
                 <div>
                     <div class="card-header">
                         <div class="card-icon">📱</div>
                         <div class="card-title-box">
-                            <h3>APP MÓVIL</h3>
-                            <p>Bot de Inscripciones UMSS</p>
+                            <h3>WEBSISS-BOT APP</h3>
+                            <p>Aplicación Móvil Oficial (Android)</p>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <img src="login.png" class="card-preview" alt="App Preview" onerror="this.src='https://via.placeholder.com/120x140/000/FFF?text=APP'">
-                        <ul class="card-features">
-                            <li>Configuración remota</li>
-                            <li>Interfaz moderna</li>
-                            <li>Notificaciones en vivo</li>
-                        </ul>
-                    </div>
+                    <ul class="card-features">
+                        <li>Configuración remota</li>
+                        <li>Compra y gestión de tokens</li>
+                        <li>Monitoreo en todo momento</li>
+                        <li>Interfaz moderna pixel-art</li>
+                        <li>Alertas de notificaciones instantáneas</li>
+                    </ul>
                 </div>
-                <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
-                    ⬇ DESCARGAR APP<br><span style="font-size:8px; color:#94A3B8;">APK • Android</span>
-                </a>
+
+                <button class="btn-more" id="btnMoreApp" onclick="expandCard('app')">VER MÁS</button>
+
+                <!-- VISTA EXPANDIDA APP -->
+                <div class="expanded-details" id="detailsApp">
+                    <p>
+                        La <b>WEBSISS-BOT APP</b> te permite tomar el control total de tu bot de PC directamente desde tu teléfono celular. Configura tus datos SIS, programa tus materias objetivo, compra tokens y recibe notificaciones instantáneas en tiempo real cuando tu materia sea asegurada.
+                    </p>
+                    
+                    <div class="screenshot-gallery">
+                        <img src="login.png" alt="Pantalla de Login" onerror="this.style.display='none'">
+                        <img src="config.png" alt="Configuración de Datos" onerror="this.style.display='none'">
+                        <img src="panel.png" alt="Panel de Control" onerror="this.style.display='none'">
+                    </div>
+
+                    <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
+                        ⬇ DESCARGAR APP (.APK)
+                    </a>
+                    <button class="btn-back" onclick="resetCards()">← VOLVER</button>
+                </div>
             </div>
 
             <!-- TARJETA PROGRAMA PC -->
-            <div class="card">
+            <div class="card" id="cardPc">
                 <div>
                     <div class="card-header">
                         <div class="card-icon">💻</div>
                         <div class="card-title-box">
-                            <h3>PROGRAMA DE PC</h3>
-                            <p>Bot de Inscripciones UMSS</p>
+                            <h3>WEBSISS-BOT PC</h3>
+                            <p>Programa de Escritorio (Windows)</p>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <img src="panel.png" class="card-preview" alt="PC Preview" onerror="this.src='https://via.placeholder.com/120x140/000/FFF?text=PC'">
-                        <ul class="card-features">
-                            <li>Alta estabilidad</li>
-                            <li>Interfaz avanzada</li>
-                            <li>Funciones exclusivas</li>
-                        </ul>
-                    </div>
+                    <ul class="card-features">
+                        <li>Interfaz intuitiva y liviana</li>
+                        <li>Bot agarrador de materias de alta velocidad</li>
+                        <li>Conexión con la app mediante cuentas Gmail</li>
+                        <li>Alta estabilidad y tolerancia a fallos</li>
+                        <li>Ejecución en segundo plano</li>
+                    </ul>
                 </div>
-                <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
-                    ⬇ DESCARGAR PROGRAMA<br><span style="font-size:8px; color:#94A3B8;">EXE • Windows</span>
-                </a>
+
+                <button class="btn-more" id="btnMorePc" onclick="expandCard('pc')">VER MÁS</button>
+
+                <!-- VISTA EXPANDIDA PC -->
+                <div class="expanded-details" id="detailsPc">
+                    <p>
+                        El <b>WEBSISS-BOT PC</b> es el motor principal ejecutable en tu computadora. Diseñado para conectarse mediante tu cuenta de Gmail registrada en la app, ejecuta peticiones en milisegundos para asegurar las materias deseadas manteniendo un consumo mínimo de recursos.
+                    </p>
+                    
+                    <div class="screenshot-gallery">
+                        <img src="panel.png" alt="Consola del Bot PC" onerror="this.style.display='none'">
+                    </div>
+
+                    <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
+                        ⬇ DESCARGAR PROGRAMA (.EXE)
+                    </a>
+                    <button class="btn-back" onclick="resetCards()">← VOLVER</button>
+                </div>
             </div>
 
         </section>
@@ -399,28 +470,58 @@
             </div>
         </section>
 
-        <!-- BARRA DE ESTADÍSTICAS -->
-        <section class="stats-bar">
-            <div class="stat-item">
-                <h5>+100%</h5>
-                <p>Estabilidad</p>
-            </div>
-            <div class="stat-item">
-                <h5>SSL / TLS</h5>
-                <p>Cifrado Seguro</p>
-            </div>
-            <div class="stat-item">
-                <h5>5.0 ★</h5>
-                <p>Calificación</p>
-            </div>
-        </section>
-
         <!-- FOOTER -->
         <footer>
-            WEBSISS © 2026. Todos los derechos reservados. — Desarrollado por DevStudio HS
+            WEBSISS BOT © 2026. Todos los derechos reservados. — Desarrollado por DevStudio HS
         </footer>
 
     </div>
+
+    <!-- SCRIPT DE INTERACTIVIDAD (VER MÁS / VOLVER) -->
+    <script>
+        function expandCard(type) {
+            const grid = document.getElementById('downloadGrid');
+            const cardApp = document.getElementById('cardApp');
+            const cardPc = document.getElementById('cardPc');
+            const detailsApp = document.getElementById('detailsApp');
+            const detailsPc = document.getElementById('detailsPc');
+            const btnMoreApp = document.getElementById('btnMoreApp');
+            const btnMorePc = document.getElementById('btnMorePc');
+
+            grid.classList.add('single-mode');
+
+            if (type === 'app') {
+                cardPc.classList.add('hidden');
+                detailsApp.style.display = 'block';
+                btnMoreApp.style.display = 'none';
+            } else if (type === 'pc') {
+                cardApp.classList.add('hidden');
+                detailsPc.style.display = 'block';
+                btnMorePc.style.display = 'none';
+            }
+        }
+
+        function resetCards() {
+            const grid = document.getElementById('downloadGrid');
+            const cardApp = document.getElementById('cardApp');
+            const cardPc = document.getElementById('cardPc');
+            const detailsApp = document.getElementById('detailsApp');
+            const detailsPc = document.getElementById('detailsPc');
+            const btnMoreApp = document.getElementById('btnMoreApp');
+            const btnMorePc = document.getElementById('btnMorePc');
+
+            grid.classList.remove('single-mode');
+            
+            cardApp.classList.remove('hidden');
+            cardPc.classList.remove('hidden');
+
+            detailsApp.style.display = 'none';
+            detailsPc.style.display = 'none';
+
+            btnMoreApp.style.display = 'block';
+            btnMorePc.style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
