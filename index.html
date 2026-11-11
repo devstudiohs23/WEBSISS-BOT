@@ -27,11 +27,36 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
+            position: relative;
         }
 
         .container {
             max-width: 1100px;
             width: 100%;
+            z-index: 2;
+        }
+
+        /* EFFECTO DE RASTRO DE CUADROS PIXELADOS */
+        .trail-pixel {
+            position: absolute;
+            background: #FFFFFF;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 4px rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 1px;
+            animation: pixelFade 0.5s ease-out forwards;
+        }
+
+        @keyframes pixelFade {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2) rotate(45deg) translateY(-10px);
+            }
         }
 
         /* 1. NAVEGACIÓN (INICIO Y SOPORTE WHATSAPP) */
@@ -200,7 +225,7 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
 
-        /* DETALLES EXPANDIDOS (GALERÍA DE CAPTURAS + DESCRIPCIÓN) */
+        /* DETALLES EXPANDIDOS Y SECCIONES DETALLADAS */
         .expanded-details {
             display: none;
             margin-top: 20px;
@@ -214,11 +239,51 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .expanded-details p {
+        .expanded-text {
             font-size: 12px;
             color: #CBD5E1;
             line-height: 1.7;
             margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .expanded-subhead {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 11px;
+            color: #FFFFFF;
+            margin: 20px 0 12px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .steps-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .steps-list li {
+            font-size: 11px;
+            color: #CBD5E1;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .key-points-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .key-points-list li {
+            font-size: 11px;
+            color: #E2E8F0;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .screenshot-gallery {
@@ -226,7 +291,7 @@
             gap: 15px;
             overflow-x: auto;
             padding-bottom: 15px;
-            margin-bottom: 25px;
+            margin: 20px 0;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -246,7 +311,7 @@
             border-color: #FFFFFF;
         }
 
-        /* BOTONES DE ACCIÓN (VER MÁS / DESCARGAR / VOLVER) */
+        /* BOTONES DE ACCIÓN */
         .btn-more, .btn-download, .btn-back {
             display: inline-block;
             width: 100%;
@@ -392,9 +457,25 @@
 
                 <!-- VISTA EXPANDIDA APP -->
                 <div class="expanded-details" id="detailsApp">
-                    <p>
-                        La <b>WEBSISS-BOT APP</b> te permite tomar el control total de tu bot de PC directamente desde tu teléfono celular. Configura tus datos SIS, programa tus materias objetivo, compra tokens y recibe notificaciones instantáneas en tiempo real cuando tu materia sea asegurada.
+                    <p class="expanded-text">
+                        <b>WEBSISS-BOT APP</b> es el centro de mando móvil diseñado para darte control absoluto sobre el proceso de inscripción sin necesidad de estar pegado a la computadora. Conectada a la nube mediante Firebase, la app te permite guardar y gestionar tus credenciales del sistema SIS, definir las materias y grupos que deseas inscribir, administrar tu saldo de tokens y supervisar la consola de comandos de la PC en tiempo real. Si el servidor de la universidad se cae o la PC completa una tarea, la app te enviará una notificación push instantánea a tu pantalla de bloqueo.
                     </p>
+
+                    <h4 class="expanded-subhead">📖 GUÍA DE USO PASO A PASO</h4>
+                    <ul class="steps-list">
+                        <li><b>1. Registro e Inicio de Sesión:</b> Crea tu cuenta o ingresa con tu correo (el mismo que utilizarás obligatoriamente en el programa de PC para mantenerlos vinculados).</li>
+                        <li><b>2. Configuración de Datos SIS:</b> En la pestaña de <i>Configuración</i>, ingresa tu código SIS, contraseña, fecha de nacimiento y tus códigos dinámicos.</li>
+                        <li><b>3. Añadir Targets (Materias):</b> Registra el código de materia y el número de grupo que deseas asegurar.</li>
+                        <li><b>4. Guardar y Sincronizar:</b> Presiona <i>Guardar Configuración</i> para subir tus datos cifrados a la nube.</li>
+                        <li><b>5. Control Remoto:</b> Desde el <i>Panel de Control</i>, presiona <b>Iniciar Bot</b> para enviar la orden de ejecución a tu computadora, o solicita capturas en vivo para verificar el estado actual.</li>
+                    </ul>
+
+                    <h4 class="expanded-subhead">⚠️ PUNTOS CLAVE E IMPORTANTES</h4>
+                    <ul class="key-points-list">
+                        <li><b>🔒 Privacidad Total:</b> Tus credenciales SIS no se comparten con terceros; viajan cifradas hacia tu contenedor privado de Firebase.</li>
+                        <li><b>🔑 Sistema de Tokens y Adquisición Directa:</b> Para activar el servicio solicitas tu llave de acceso o token desde la tienda de la app eligiendo el combo que prefieras. El proceso de pago y atención se realiza de forma directa por <b>WhatsApp</b>. Una vez realizado el pago, se te enviará y habilitará tu llave de acceso para iniciar el bot.</li>
+                        <li><b>📱 Requisitos del Sistema:</b> Celular con Android 8.0 o superior con conexión a Internet activa.</li>
+                    </ul>
                     
                     <div class="screenshot-gallery">
                         <img src="login.png" alt="Pantalla de Login" onerror="this.style.display='none'">
@@ -432,96 +513,15 @@
 
                 <!-- VISTA EXPANDIDA PC -->
                 <div class="expanded-details" id="detailsPc">
-                    <p>
-                        El <b>WEBSISS-BOT PC</b> es el motor principal ejecutable en tu computadora. Diseñado para conectarse mediante tu cuenta de Gmail registrada en la app, ejecuta peticiones en milisegundos para asegurar las materias deseadas manteniendo un consumo mínimo de recursos.
+                    <p class="expanded-text">
+                        <b>WEBSISS-BOT PC</b> es el motor ejecutable de alta velocidad para Windows que realiza todo el trabajo pesado de automatización. Diseñado con una interfaz idéntica a la app móvil pero potenciado con una <b>consola de registros en tiempo real</b>, el programa abre la página oficial de Websiss, ingresa tus datos, resuelve el CAPTCHA autónomamente y busca el cupo deseado sin descanso. Funciona en segundo plano sin ralentizar tu computadora y se vincula automáticamente con tu teléfono celular.
                     </p>
-                    
-                    <div class="screenshot-gallery">
-                        <img src="panel.png" alt="Consola del Bot PC" onerror="this.style.display='none'">
-                    </div>
 
-                    <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
-                        ⬇ DESCARGAR PROGRAMA (.EXE)
-                    </a>
-                    <button class="btn-back" onclick="resetCards()">← VOLVER</button>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- CARACTERÍSTICAS PRINCIPALES -->
-        <h2 class="section-header" id="caracteristicas">CARACTERÍSTICAS PRINCIPALES</h2>
-        <section class="features-grid">
-            <div class="feature-box">
-                <div class="feature-icon">⚡</div>
-                <h4>Rendimiento Optimizado</h4>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🛡️</div>
-                <h4>Seguridad Garantizada</h4>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🔄</div>
-                <h4>Actualizaciones Constantes</h4>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🎧</div>
-                <h4>Soporte Especializado</h4>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer>
-            WEBSISS BOT © 2026. Todos los derechos reservados. — Desarrollado por DevStudio HS
-        </footer>
-
-    </div>
-
-    <!-- SCRIPT DE INTERACTIVIDAD (VER MÁS / VOLVER) -->
-    <script>
-        function expandCard(type) {
-            const grid = document.getElementById('downloadGrid');
-            const cardApp = document.getElementById('cardApp');
-            const cardPc = document.getElementById('cardPc');
-            const detailsApp = document.getElementById('detailsApp');
-            const detailsPc = document.getElementById('detailsPc');
-            const btnMoreApp = document.getElementById('btnMoreApp');
-            const btnMorePc = document.getElementById('btnMorePc');
-
-            grid.classList.add('single-mode');
-
-            if (type === 'app') {
-                cardPc.classList.add('hidden');
-                detailsApp.style.display = 'block';
-                btnMoreApp.style.display = 'none';
-            } else if (type === 'pc') {
-                cardApp.classList.add('hidden');
-                detailsPc.style.display = 'block';
-                btnMorePc.style.display = 'none';
-            }
-        }
-
-        function resetCards() {
-            const grid = document.getElementById('downloadGrid');
-            const cardApp = document.getElementById('cardApp');
-            const cardPc = document.getElementById('cardPc');
-            const detailsApp = document.getElementById('detailsApp');
-            const detailsPc = document.getElementById('detailsPc');
-            const btnMoreApp = document.getElementById('btnMoreApp');
-            const btnMorePc = document.getElementById('btnMorePc');
-
-            grid.classList.remove('single-mode');
-            
-            cardApp.classList.remove('hidden');
-            cardPc.classList.remove('hidden');
-
-            detailsApp.style.display = 'none';
-            detailsPc.style.display = 'none';
-
-            btnMoreApp.style.display = 'block';
-            btnMorePc.style.display = 'block';
-        }
-    </script>
-
-</body>
-</html>
+                    <h4 class="expanded-subhead">📖 GUÍA DE USO PASO A PASO</h4>
+                    <ul class="steps-list">
+                        <li><b>1. Inicio de Sesión Vincular:</b> Abre el programa e inicia sesión exactamente con la misma cuenta de correo usada en tu app móvil para sincronizar ambos sistemas.</li>
+                        <li><b>2. Interfaz e Identidad Sincronizada:</b> Verás la misma interfaz que en tu celular, añadiendo un panel exclusivo donde observas en tiempo real cada acción que realiza el bot.</li>
+                        <li><b>3. Configuración y Control Flexible:</b> Puedes configurar materias e iniciar o pausar la ejecución de dos formas: directamente desde el programa en la PC o a distancia desde tu celular.</li>
+                        <li><b>4. Ingreso Automático y CAPTCHA:</b> Al presionar <i>Iniciar</i>, el bot abre la página oficial de Websiss, escribe tus credenciales automáticamente y resuelve el CAPTCHA para acceder a tu cuenta SIS.</li>
+                        <li><b>5. Navegación y Búsqueda Continua:</b> Se dirige al estado de inscripción, busca la materia y el grupo programado. Si el cupo no está disponible, recarga la página de inmediato y reintenta el proceso en bucle continuo.</li>
+                        <li><b>6. Priorización Estricta de Materias:</b> Si programas múltiples materias, el bot trabajará por orden de prioridad: buscará e intentará inscribir únicame
