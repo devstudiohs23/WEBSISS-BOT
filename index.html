@@ -524,4 +524,136 @@
                         <li><b>3. Configuración y Control Flexible:</b> Puedes configurar materias e iniciar o pausar la ejecución de dos formas: directamente desde el programa en la PC o a distancia desde tu celular.</li>
                         <li><b>4. Ingreso Automático y CAPTCHA:</b> Al presionar <i>Iniciar</i>, el bot abre la página oficial de Websiss, escribe tus credenciales automáticamente y resuelve el CAPTCHA para acceder a tu cuenta SIS.</li>
                         <li><b>5. Navegación y Búsqueda Continua:</b> Se dirige al estado de inscripción, busca la materia y el grupo programado. Si el cupo no está disponible, recarga la página de inmediato y reintenta el proceso en bucle continuo.</li>
-                        <li><b>6. Priorización Estricta de Materias:</b> Si programas múltiples materias, el bot trabajará por orden de prioridad: buscará e intentará inscribir únicame
+                        <li><b>6. Priorización Estricta de Materias:</b> Si programas múltiples materias, el bot trabajará por orden de prioridad: buscará e intentará inscribir únicame 
+                        <li><b>7. Auto-Recuperación y Notificaciones:</b> Si el servidor de la universidad te saca de la cuenta, el bot vuelve a ingresar de forma automática. Al lograr inscribir la materia, el programa se detiene, emite un <b>sonido de alerta en la computadora</b> y manda una <b>notificación push a tu celular</b>.</li>
+                    </ul>
+
+                    <h4 class="expanded-subhead">⚠️ PUNTOS CLAVE E IMPORTANTES</h4>
+                    <ul class="key-points-list">
+                        <li><b>🤖 Resolución Autónoma de CAPTCHA:</b> Supera las barreras de inicio de sesión de la universidad sin intervención humana.</li>
+                        <li><b>🔄 Tolerancia a Caídas del Servidor:</b> Reingreso automático inmediato ante cierres de sesión inesperados o saturación de la página.</li>
+                        <li><b>🔔 Doble Alerta de Éxito:</b> Notificación sonora en parlantes de la PC + Notificación instantánea en tu smartphone al asegurar tu materia.</li>
+                        <li><b>💻 Requisitos del Sistema:</b> Windows 10/11 y mantener la computadora encendida con acceso a Internet durante la jornada de inscripción.</li>
+                    </ul>
+
+                    <div class="screenshot-gallery">
+                        <img src="panel.png" alt="Consola del Bot PC" onerror="this.style.display='none'">
+                    </div>
+
+                    <a href="https://github.com/devstudiohs23/WEBSISS-BOT/releases/latest" class="btn-download">
+                        ⬇ DESCARGAR PROGRAMA (.EXE)
+                    </a>
+                    <button class="btn-back" onclick="resetCards()">← VOLVER</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CARACTERÍSTICAS PRINCIPALES -->
+        <h2 class="section-header" id="caracteristicas">CARACTERÍSTICAS PRINCIPALES</h2>
+        <section class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">⚡</div>
+                <h4>Rendimiento Optimizado</h4>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🛡️</div>
+                <h4>Seguridad Garantizada</h4>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔄</div>
+                <h4>Actualizaciones Constantes</h4>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🎧</div>
+                <h4>Soporte Especializado</h4>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            WEBSISS BOT © 2026. Todos los derechos reservados. — Desarrollado por DevStudio HS
+        </footer>
+
+    </div>
+
+    <!-- SCRIPTS INTERACTIVOS (VER MÁS, VOLVER Y RASTRO DE PÍXELES) -->
+    <script>
+        // EXPANDIR Y COLAPSAR TARJETAS
+        function expandCard(type) {
+            const grid = document.getElementById('downloadGrid');
+            const cardApp = document.getElementById('cardApp');
+            const cardPc = document.getElementById('cardPc');
+            const detailsApp = document.getElementById('detailsApp');
+            const detailsPc = document.getElementById('detailsPc');
+            const btnMoreApp = document.getElementById('btnMoreApp');
+            const btnMorePc = document.getElementById('btnMorePc');
+
+            grid.classList.add('single-mode');
+
+            if (type === 'app') {
+                cardPc.classList.add('hidden');
+                detailsApp.style.display = 'block';
+                btnMoreApp.style.display = 'none';
+            } else if (type === 'pc') {
+                cardApp.classList.add('hidden');
+                detailsPc.style.display = 'block';
+                btnMorePc.style.display = 'none';
+            }
+        }
+
+        function resetCards() {
+            const grid = document.getElementById('downloadGrid');
+            const cardApp = document.getElementById('cardApp');
+            const cardPc = document.getElementById('cardPc');
+            const detailsApp = document.getElementById('detailsApp');
+            const detailsPc = document.getElementById('detailsPc');
+            const btnMoreApp = document.getElementById('btnMoreApp');
+            const btnMorePc = document.getElementById('btnMorePc');
+
+            grid.classList.remove('single-mode');
+            
+            cardApp.classList.remove('hidden');
+            cardPc.classList.remove('hidden');
+
+            detailsApp.style.display = 'none';
+            detailsPc.style.display = 'none';
+
+            btnMoreApp.style.display = 'block';
+            btnMorePc.style.display = 'block';
+        }
+
+        // EFECTO ANIMADO: RASTRO DE CUADROS PIXELADOS AL MOVER MOUSE O DESLIZAR DEDO
+        function createPixel(x, y) {
+            const pixel = document.createElement('div');
+            pixel.className = 'trail-pixel';
+            
+            // Tamaño dinámico aleatorio (entre 6px y 12px)
+            const size = Math.floor(Math.random() * 7) + 6;
+            pixel.style.width = size + 'px';
+            pixel.style.height = size + 'px';
+            
+            pixel.style.left = (x - size / 2) + 'px';
+            pixel.style.top = (y - size / 2) + 'px';
+
+            document.body.appendChild(pixel);
+
+            // Eliminar elemento después de la animación (500ms)
+            setTimeout(() => {
+                pixel.remove();
+            }, 500);
+        }
+
+        // Rastro por puntero (mouse y touch universal)
+        let lastTime = 0;
+        window.addEventListener('pointermove', function(e) {
+            const currentTime = Date.now();
+            if (currentTime - lastTime > 30) { // Control de fluidez
+                createPixel(e.pageX, e.pageY);
+                lastTime = currentTime;
+            }
+        });
+    </script>
+
+</body>
+</html>
